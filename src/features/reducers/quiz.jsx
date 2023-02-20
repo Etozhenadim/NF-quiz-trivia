@@ -1,12 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 
-
-
-
 // Define the fetchData thunk using the createAsyncThunk function
 export const fetchData = createAsyncThunk('data/fetchData', async(payload, thunkAPI) =>{
-    const response = await axios.get('https://opentdb.com/api.php?amount=10')
+    const response = await axios.get('https://opentdb.com/api.php?amount=10&category=11&difficulty=hard')
     // Return the data from the API response
     return response.data.results;
 })
