@@ -18,7 +18,7 @@ export const Quiz =()=>{
                 quiz[currentQuestionIndex] && (
                     <>
 
-                        <h2>{quiz[currentQuestionIndex]?.question}</h2>
+                        <h2 dangerouslySetInnerHTML={{ __html: quiz[currentQuestionIndex]?.question }}></h2>
                         <p>Number of question {currentQuestionIndex}</p>
                         {quiz[currentQuestionIndex].options.map((option) => (
                             <button onClick={(e) => pickAnswer(currentQuestionIndex, e)}>

@@ -8,9 +8,12 @@ export const useQuiz=()=>{
     const data = useSelector(state=> state.quiz.data)
     const isLoading = useSelector(state=>state.quiz.isLoading)
     const error = useSelector(state=> state.quiz.error)
+
     const [quiz, setQuiz] = useState([])
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [points, setPoints] = useState(0)
+
+    console.log(data)
 
     useEffect(() => {
         dispatch(fetchData())
