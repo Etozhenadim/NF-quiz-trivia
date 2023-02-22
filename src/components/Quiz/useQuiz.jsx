@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchData} from "../../features/reducers/quiz";
 
 
-export const useQuiz=()=>{
+export const useQuiz=({idCategory})=>{
     const dispatch = useDispatch();
     const data = useSelector(state=> state.quiz.data)
     const isLoading = useSelector(state=>state.quiz.isLoading)
@@ -15,8 +15,9 @@ export const useQuiz=()=>{
 
     console.log(data)
 
+    console.log(idCategory)
     useEffect(() => {
-        dispatch(fetchData())
+        dispatch(fetchData(idCategory))
     }, [dispatch]);
 
     const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);

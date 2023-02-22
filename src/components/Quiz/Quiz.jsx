@@ -1,8 +1,9 @@
 import {useQuiz} from "./useQuiz";
 import {Finish} from "../Finish/Finish";
 
-export const Quiz =()=>{
-    const {isLoading, error, quiz, currentQuestionIndex, points, pickAnswer } = useQuiz();
+
+export const Quiz =({idCategory})=>{
+    const {isLoading, error, quiz, currentQuestionIndex, points, pickAnswer } = useQuiz({idCategory});
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -11,6 +12,8 @@ export const Quiz =()=>{
     if (error) {
         return <div>Error: {error}</div>;
     }
+
+
 
     return (
         <div>

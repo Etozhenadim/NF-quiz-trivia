@@ -2,52 +2,52 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 
 // Define the fetchData thunk using the createAsyncThunk function
-export const fetchData = createAsyncThunk('data/fetchData', async(idCategory, thunkAPI) =>{
-    const response = await axios.get(`https://opentdb.com/api.php?amount=10&category=${idCategory}&difficulty=hard`)
+export const fetchCategories = createAsyncThunk('data/fetchCategories', async(payload, thunkAPI) =>{
+    const response = await axios.get('https://opentdb.com/api_category.php')
     // Return the data from the API response
-    return response.data.results;
+    return response.data.trivia_categories;
 })
 
 
-export const quiz = createSlice({
-    name: 'quiz',
+export const categories = createSlice({
+    name: 'categories',
     initialState: {
         data: [],
         isLoading: false,
         error: null
     },
     reducers: {
-        fetchDataStart: (state)=>{
+        fetchCategoriestart: (state)=>{
             state.isLoading = true;
         },
-        fetchDataSuccess:(state, action)=>{
+        fetchCategoriesSuccess:(state, action)=>{
             // Set the data to the payload from the action
             state.data = action.payload;
             state.isLoading = false;
             state.error = null;
         },
-        fetchDataFailure: (state, action) =>{
+        fetchCategoriesFailure: (state, action) =>{
             state.error = action.payload;
             state.isLoading = false;
         }
     },
     // Extra reducers to handle the status of the fetchData thunk
     extraReducers:{
-        [fetchData.pending]: (state) => {
+        [fetchCategories.pending]: (state) => {
             state.isLoading = true;
         },
-        [fetchData.fulfilled]: (state, action) => {
+        [fetchCategories.fulfilled]: (state, action) => {
             state.data = action.payload;
             state.isLoading = false;
             state.error = null;
         },
-        [fetchData.rejected]: (state, action) => {
+        [fetchCategories.rejected]: (state, action) => {
             state.error = action.payload;
             state.isLoading = false;
         },
     }
 });
 // export the actions and reducer
-export const { fetchDataStart, fetchDataSuccess, fetchDataFailure } = quiz.actions;
+export const { fetchCategoriesStart, fetchCategoriesSuccess, fetchDataFailure } = categories.actions;
 
-export default quiz.reducer;
+export default categories.reducer;
