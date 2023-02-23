@@ -7,11 +7,11 @@ function App() {
     const [start, setStart] = useState(false);
     const [idCategory, setIdCategory] = useState(9)
 
-  return (
-    <div className="App">
-        {start ? <Quiz idCategory={idCategory}/> :<Start setStart={setStart} setNameCategory={setIdCategory}/> }
-    </div>
-  );
+    return (
+        <div className="App" style={{padding: '30px'}}>
+            {start ? <Quiz idCategory={idCategory}/> :<Start setStart={setStart} idCategory={idCategory} setIdCategory={setIdCategory}/> }
+        </div>
+    );
 }
 
 export default App;
