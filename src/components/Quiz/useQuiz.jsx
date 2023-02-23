@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchData} from "../../features/reducers/quiz";
 
 
-export const useQuiz=({idCategory})=>{
+export const useQuiz=({idCategory, difficulty, number})=>{
     const dispatch = useDispatch();
     const data = useSelector(state=> state.quiz.data)
     const isLoading = useSelector(state=>state.quiz.isLoading)
@@ -13,11 +13,9 @@ export const useQuiz=({idCategory})=>{
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [points, setPoints] = useState(0)
 
-    console.log(data)
 
-    console.log(idCategory)
     useEffect(() => {
-        dispatch(fetchData(idCategory))
+        dispatch(fetchData({idCategory, difficulty, number}))
     }, [dispatch]);
 
     const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);

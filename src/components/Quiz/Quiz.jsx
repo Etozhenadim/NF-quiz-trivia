@@ -2,8 +2,8 @@ import {useQuiz} from "./useQuiz";
 import {Finish} from "../Finish/Finish";
 
 
-export const Quiz =({idCategory})=>{
-    const {isLoading, error, quiz, currentQuestionIndex, points, pickAnswer } = useQuiz({idCategory});
+export const Quiz =({idCategory, difficulty, number})=>{
+    const {isLoading, error, quiz, currentQuestionIndex, points, pickAnswer } = useQuiz({idCategory, difficulty, number});
 
     if (isLoading) {
         return <div>Loading...</div>;

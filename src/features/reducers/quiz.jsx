@@ -2,8 +2,9 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 
 // Define the fetchData thunk using the createAsyncThunk function
-export const fetchData = createAsyncThunk('data/fetchData', async(idCategory, thunkAPI) =>{
-    const response = await axios.get(`https://opentdb.com/api.php?amount=10&category=${idCategory}&difficulty=hard`)
+export const fetchData = createAsyncThunk('data/fetchData', async({idCategory, difficulty, number}, thunkAPI) =>{
+    console.log(number)
+    const response = await axios.get(`https://opentdb.com/api.php?amount=${number}&category=${idCategory}&difficulty=${difficulty}`)
     // Return the data from the API response
     return response.data.results;
 })
