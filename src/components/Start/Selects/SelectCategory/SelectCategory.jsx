@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchCategories} from "../../../features/reducers/categories";
+import {fetchCategories} from "../../../../features/reducers/categories";
 
 
 export const SelectCategory =({idCategory, setIdCategory})=>{

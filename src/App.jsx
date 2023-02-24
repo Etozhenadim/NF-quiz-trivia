@@ -2,6 +2,7 @@ import './App.css';
 import {Quiz} from "./components/Quiz/Quiz";
 import {Start} from './components/Start/Start';
 import {useState} from "react";
+import Container from "@mui/material/Container";
 
 function App() {
     const [start, setStart] = useState(false);
@@ -12,11 +13,14 @@ function App() {
 
 
     return (
-        <div className="App" style={{padding: '30px'}}>
-            {start ?
-                <Quiz idCategory={idCategory} difficulty={difficulty} number={number}/> :
-                <Start setStart={setStart} idCategory={idCategory} setIdCategory={setIdCategory} difficulty = {difficulty} setDifficulty={setDifficulty} number={number} setNumber={setNumber}/> }
-        </div>
+
+            <Container className="App" style={{padding: '30px'}} maxWidth="lg">
+                {start ?
+                    <Quiz idCategory={idCategory} difficulty={difficulty} number={number}/> :
+                    <Start setStart={setStart} idCategory={idCategory} setIdCategory={setIdCategory} difficulty = {difficulty} setDifficulty={setDifficulty} number={number} setNumber={setNumber}/> }
+            </Container>
+
+
     );
 }
 

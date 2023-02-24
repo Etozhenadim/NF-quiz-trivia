@@ -1,5 +1,7 @@
 import {useQuiz} from "./useQuiz";
 import {Finish} from "../Finish/Finish";
+import {Answers} from "./Answers/Answers";
+import {Question} from "./Question/Question";
 
 
 export const Quiz =({idCategory, difficulty, number})=>{
@@ -19,19 +21,11 @@ export const Quiz =({idCategory, difficulty, number})=>{
         <div>
             {currentQuestionIndex < quiz.length - 1 ? (
                 quiz[currentQuestionIndex] && (
-                    <>
-
-                        <h2 dangerouslySetInnerHTML={{ __html: quiz[currentQuestionIndex]?.question }}></h2>
-                        <p>Number of question {currentQuestionIndex}</p>
-                        {quiz[currentQuestionIndex].options.map((option) => (
-                            <button onClick={(e) => pickAnswer(currentQuestionIndex, e)}>
-                                {option}
-                            </button>
-                        ))}
-                        <h1>
-                            Points {points} / {quiz.length}
-                        </h1>
-                    </>
+                 <div>
+                     <Question quiz={quiz} points={points} questionIndex={currentQuestionIndex} />
+                     <Answers quiz={quiz} questionIndex={currentQuestionIndex} pickAnswer={pickAnswer}/>
+                 </div>
+                    
                 )
             ) : (
                 <Finish points={points} />
