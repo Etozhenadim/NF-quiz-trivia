@@ -2,10 +2,12 @@ import {useQuiz} from "./useQuiz";
 import {Finish} from "../Finish/Finish";
 import {Answers} from "./Answers/Answers";
 import {Question} from "./Question/Question";
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 
 export const Quiz =({idCategory, difficulty, number})=>{
-    const {isLoading, error, quiz, currentQuestionIndex, points, pickAnswer } = useQuiz({idCategory, difficulty, number});
+    const {isLoading, error, quiz, currentQuestionIndex, points, pickAnswer,  nextQuestion, isCorrectAnswer,selectedAnswer } = useQuiz({idCategory, difficulty, number});
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -15,22 +17,23 @@ export const Quiz =({idCategory, difficulty, number})=>{
         return <div>Error: {error}</div>;
     }
 
-
-
     return (
-        <div>
-            {currentQuestionIndex < quiz.length - 1 ? (
-                quiz[currentQuestionIndex] && (
-                 <div>
-                     <Question quiz={quiz} points={points} questionIndex={currentQuestionIndex} />
-                     <Answers quiz={quiz} questionIndex={currentQuestionIndex} pickAnswer={pickAnswer}/>
-                 </div>
-                    
-                )
-            ) : (
-                <Finish points={points} />
-            )}
-        </div>
+        <Container maxWidth="lg">
+            <Box sx={{display: 'flex', flexDirection: 'flex-column',}}>
+                {currentQuestionIndex < quiz.length - 1 ? (
+                    quiz[currentQuestionIndex] && (
+                        <div>
+                            <Question quiz={quiz} points={points} questionIndex={currentQuestionIndex} />
+                            <Answers quiz={quiz} questionIndex={currentQuestionIndex} pickAnswer={pickAnswer} selectedAnswer={selectedAnswer} isCorrectAnswer={isCorrectAnswer}/>
+                            <button onClick={ nextQuestion}>Next Question</button>
+                        </div>
+                    )
+                ) : (
+                    <Finish points={points} />
+                )}
+            </Box>
+        </Container>
+
     );
 
 };

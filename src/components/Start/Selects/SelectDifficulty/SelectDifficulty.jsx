@@ -14,7 +14,7 @@ export const SelectDifficulty =({difficulty, setDifficulty})=>{
     };
     return(
         <>
-            <Box sx={{ minWidth: 120 }}>
+            <Box sx={{ width: '100%' }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Difficulty</InputLabel>
                     <Select

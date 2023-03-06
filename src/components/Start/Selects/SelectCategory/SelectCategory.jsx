@@ -30,7 +30,7 @@ export const SelectCategory =({idCategory, setIdCategory})=>{
     };
     return(
         <>
-            <Box sx={{ minWidth: 120 }}>
+            <Box sx={{ width: '100%' }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
                     <Select

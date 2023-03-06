@@ -1,10 +1,8 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
-import Input from '@mui/joy/Input';
+import Input from '@mui/material/Input';
 
 export const InputNumbers=({number, setNumber})=>{
     return(
-        <Box>
             <Input
                 color="neutral"
                 size="lg"
@@ -13,6 +11,5 @@ export const InputNumbers=({number, setNumber})=>{
                 value={number}
                 onChange={e=> setNumber(e.target.value)}
             />
-        </Box>
     )
 }

@@ -10,6 +10,7 @@ export const useQuiz=({idCategory, difficulty, number})=>{
     const error = useSelector(state=> state.quiz.error)
 
     const [quiz, setQuiz] = useState([])
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [points, setPoints] = useState(0)
 
@@ -35,15 +36,27 @@ export const useQuiz=({idCategory, difficulty, number})=>{
 
     const pickAnswer = (index, e)=>{
         const pickAnswer= e.target.outerText
+        setSelectedAnswer(pickAnswer);
+        console.log(selectedAnswer);
         const currentQuestion = quiz[index]
 
         if(currentQuestion.answer === pickAnswer){
             setPoints(points +1)
         }
+    }
+    const nextQuestion=()=>{
         if (currentQuestionIndex + 1 < quiz.length) {
             setCurrentQuestionIndex(currentQuestionIndex + 1)
         }
+    }
+    const isCorrectAnswer = (option) => {
 
+        if(option === quiz.answer){
+            console.log('true')
+            return true;
+        }
+        console.log('false')
+        return false;
     }
 
     return {
@@ -53,5 +66,8 @@ export const useQuiz=({idCategory, difficulty, number})=>{
         currentQuestionIndex,
         points,
         pickAnswer,
+        nextQuestion,
+        isCorrectAnswer,
+        selectedAnswer,
     }
 }

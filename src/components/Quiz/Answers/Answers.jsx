@@ -10,14 +10,21 @@ const Button = styled(Paper)(({ theme }) => ({
     cursor: 'pointer',
 }));
 
-export const Answers = ({quiz, questionIndex, pickAnswer})=>{
+export const Answers = ({quiz, questionIndex, pickAnswer, selectedAnswer, isCorrectAnswer})=>{
 
     return (
         <Box sx={{ width: '100%'}}>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2}}>
                 {quiz[questionIndex].options.map((option) => (
                     <Grid item xs={6}>
-                        <Button className='answers-item' onClick={(e) => pickAnswer(questionIndex, e)}>
+                        <Button className='answers-item' sx={{
+                            backgroundColor:
+                                selectedAnswer && option === selectedAnswer ?
+                                    isCorrectAnswer(option)
+                                        ? 'green'
+                                        : 'red'
+                                    : 'blue',
+                        }} onClick={(e) => pickAnswer(questionIndex, e)}>
                             {option}
                         </Button>
                     </Grid>
