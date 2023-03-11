@@ -12,18 +12,24 @@ const Button = styled(Paper)(({ theme }) => ({
 
 export const Answers = ({quiz, questionIndex, pickAnswer, selectedAnswer, isCorrectAnswer})=>{
 
+    const answerColors = (option) => {
+        if (selectedAnswer) {
+            if (option === quiz[questionIndex].answer) {
+                return isCorrectAnswer(option) ? 'green' : 'red';
+            } else if (option === selectedAnswer) {
+                return 'red';
+            }
+        }
+        return 'blue';
+    };
+
     return (
         <Box sx={{ width: '100%'}}>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2}}>
                 {quiz[questionIndex].options.map((option) => (
-                    <Grid item xs={6}>
+                    <Grid item xs={6} key={option}>
                         <Button className='answers-item' sx={{
-                            backgroundColor:
-                                selectedAnswer && option === selectedAnswer ?
-                                    isCorrectAnswer(option)
-                                        ? 'green'
-                                        : 'red'
-                                    : 'blue',
+                            backgroundColor: answerColors(option),
                         }} onClick={(e) => pickAnswer(questionIndex, e)}>
                             {option}
                         </Button>
@@ -31,5 +37,5 @@ export const Answers = ({quiz, questionIndex, pickAnswer, selectedAnswer, isCorr
                 ))}
             </Grid>
         </Box>
-    )
-}
+    );
+};

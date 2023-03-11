@@ -50,9 +50,7 @@ export const useQuiz=({idCategory, difficulty, number})=>{
         }
     }
     const isCorrectAnswer = (option) => {
-
-        if(option === quiz.answer){
-            console.log('true')
+        if(option === quiz[currentQuestionIndex].answer){
             return true;
         }
         console.log('false')
