@@ -22,10 +22,10 @@ export const Quiz =({idCategory, difficulty, number})=>{
             <Box sx={{display: 'flex', flexDirection: 'flex-column',}}>
                 {currentQuestionIndex < quiz.length - 1 ? (
                     quiz[currentQuestionIndex] && (
-                        <div>
+                        <div style={{width: '100%'}}>
                             <Question quiz={quiz} points={points} questionIndex={currentQuestionIndex} />
                             <Answers quiz={quiz} questionIndex={currentQuestionIndex} pickAnswer={pickAnswer} selectedAnswer={selectedAnswer} isCorrectAnswer={isCorrectAnswer}/>
-                            <button onClick={ nextQuestion}>Next Question</button>
+                            <button onClick={nextQuestion} disabled={selectedAnswer ? false : true} >Next Question</button>
                         </div>
                     )
                 ) : (

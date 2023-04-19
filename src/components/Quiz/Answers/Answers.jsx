@@ -4,7 +4,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 
-const Button = styled(Paper)(({ theme }) => ({
+//write fetch to get data from API
+const Button = styled(Paper)(({  }) => ({
     padding: '10px 20px',
     textAlign: 'left',
     cursor: 'pointer',
@@ -12,7 +13,7 @@ const Button = styled(Paper)(({ theme }) => ({
 
 export const Answers = ({quiz, questionIndex, pickAnswer, selectedAnswer, isCorrectAnswer})=>{
 
-    const answerColors = (option) => {
+    const answerColors = (option, questionIndex) => {
         if (selectedAnswer) {
             if (option === quiz[questionIndex].answer) {
                 return isCorrectAnswer(option) ? 'green' : 'red';
@@ -20,7 +21,7 @@ export const Answers = ({quiz, questionIndex, pickAnswer, selectedAnswer, isCorr
                 return 'red';
             }
         }
-        return 'blue';
+        return 'white';
     };
 
     return (
@@ -29,7 +30,7 @@ export const Answers = ({quiz, questionIndex, pickAnswer, selectedAnswer, isCorr
                 {quiz[questionIndex].options.map((option) => (
                     <Grid item xs={6} key={option}>
                         <Button className='answers-item' sx={{
-                            backgroundColor: answerColors(option),
+                            backgroundColor: answerColors(option, questionIndex),
                         }} onClick={(e) => pickAnswer(questionIndex, e)}>
                             {option}
                         </Button>

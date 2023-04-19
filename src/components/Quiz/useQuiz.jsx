@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchData} from "../../features/reducers/quiz";
 
-
 export const useQuiz=({idCategory, difficulty, number})=>{
     const dispatch = useDispatch();
     const data = useSelector(state=> state.quiz.data)
@@ -35,19 +34,23 @@ export const useQuiz=({idCategory, difficulty, number})=>{
 
 
     const pickAnswer = (index, e)=>{
-        const pickAnswer= e.target.outerText
-        setSelectedAnswer(pickAnswer);
-        console.log(selectedAnswer);
-        const currentQuestion = quiz[index]
+        if(!selectedAnswer){
+            const pickAnswer= e.target.outerText
+            setSelectedAnswer(pickAnswer);
+            console.log(selectedAnswer);
+            const currentQuestion = quiz[index]
 
-        if(currentQuestion.answer === pickAnswer){
-            setPoints(points +1)
+            if(currentQuestion.answer === pickAnswer){
+                setPoints(points +1)
+            }
         }
+
     }
     const nextQuestion=()=>{
         if (currentQuestionIndex + 1 < quiz.length) {
             setCurrentQuestionIndex(currentQuestionIndex + 1)
         }
+        setSelectedAnswer(null)
     }
     const isCorrectAnswer = (option) => {
         if(option === quiz[currentQuestionIndex].answer){

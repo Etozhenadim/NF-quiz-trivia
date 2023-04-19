@@ -14,7 +14,7 @@ function App() {
 
     return (
 
-            <Container className="App" style={{padding: '30px'}} maxWidth="lg">
+            <Container className="App" style={{display: 'flex'}} maxWidth="lg">
                 {start ?
                     <Quiz idCategory={idCategory} difficulty={difficulty} number={number}/> :
                     <Start setStart={setStart} idCategory={idCategory} setIdCategory={setIdCategory} difficulty = {difficulty} setDifficulty={setDifficulty} number={number} setNumber={setNumber}/> }
