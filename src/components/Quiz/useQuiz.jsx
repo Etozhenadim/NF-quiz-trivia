@@ -16,7 +16,7 @@ export const useQuiz=({idCategory, difficulty, number})=>{
 
     useEffect(() => {
         dispatch(fetchData({idCategory, difficulty, number}))
-    }, [dispatch]);
+    }, [dispatch, idCategory, difficulty, number]);
 
     const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 

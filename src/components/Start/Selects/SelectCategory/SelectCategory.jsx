@@ -14,9 +14,10 @@ export const SelectCategory =({idCategory, setIdCategory})=>{
     const data = useSelector(state=> state.categories.data)
     const error = useSelector(state=>state.categories.error)
 
+
     useEffect(()=>{
         dispatch(fetchCategories())
-    }, [])
+    }, [dispatch])
 
     useEffect(()=>{
         setCategories(data)
@@ -29,23 +30,21 @@ export const SelectCategory =({idCategory, setIdCategory})=>{
         setIdCategory(event.target.value);
     };
     return(
-        <>
-            <Box sx={{ width: '100%' }}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        label="Categories"
-                        value={idCategory}
-                        onChange={handleChange}
-                    >
-                        {categories && categories.map(categorie=>(
-                            <MenuItem value={categorie.id}>{categorie.name}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            </Box>
-        </>
+        <Box sx={{ width: '100%'}}>
+            <FormControl fullWidth >
+                <InputLabel id="demo-simple-select-label" >Category</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Categories"
+                    value={idCategory}
+                    onChange={handleChange}
+                >
+                    {categories && categories.map(categorie=>(
+                        <MenuItem value={categorie.id}>{categorie.name}</MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+        </Box>
     )
 }
